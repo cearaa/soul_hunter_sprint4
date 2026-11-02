@@ -1,0 +1,31 @@
+import { Ghost } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { ROTAS } from "../../routes/paths";
+import { getPageAccent } from "../../theme/pageAccent";
+
+export default function Footer() {
+  const location = useLocation();
+  const accent = getPageAccent(location.pathname);
+
+  return (
+    <footer
+      className={`border-t border-white/10 bg-gradient-to-r ${accent.stripe} px-6 py-6 text-center text-white transition-colors duration-700`}
+    >
+      <p className="flex items-center justify-center gap-2 font-semibold">
+        <Ghost className="h-4 w-4" aria-hidden="true" />
+        SoulHunter <span className="opacity-70">·</span> {accent.label}
+      </p>
+      <p className="mt-1 text-sm text-white/80">
+        &copy; 2026 SoulHunter — Plataforma Sustentável Gamificada. Todos os fantasmas reservados.
+      </p>
+      <Link
+        to={ROTAS.fantasma}
+        aria-label="Não clique aqui"
+        title="Não clique aqui"
+        className="mt-2 inline-block opacity-40 transition-opacity hover:opacity-100"
+      >
+        <Ghost className="h-4 w-4" aria-hidden="true" />
+      </Link>
+    </footer>
+  );
+}
