@@ -12,7 +12,15 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import Ghost from "../../components/Ghost/Ghost";
+import GhostField from "../../components/Ghost/GhostField";
+import Button from "../../components/Button/Button";
+import ButtonLink from "../../components/Button/ButtonLink";
+import Card from "../../components/Card/Card";
 import { almas } from "../../data/almas";
+import { ROTAS } from "../../routes/paths";
+import EstatisticasReais from "./EstatisticasReais";
+import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 
 interface Feature {
   title: string;
@@ -165,4 +173,52 @@ export default function Home() {
         </div>
       </section>
 
-     
+      <EstatisticasReais />
+
+      <section className="relative overflow-hidden py-16">
+        <div className="mx-auto w-[90%] max-w-6xl text-center">
+          <h2 className="mb-3 text-3xl font-bold text-white sm:text-4xl">Almas à espreita</h2>
+          <p className="mx-auto mb-10 max-w-xl text-white/70">
+            Uma prévia das almas que você pode encontrar pela cidade. Quer saber mais sobre cada
+            uma? Visite a página <Link to="/sobre" className="text-soul-teal underline">Sobre</Link>.
+          </p>
+          <div className="flex flex-wrap justify-center gap-8">
+            {almas.map((alma) => (
+              <div key={alma.id} className="group text-center">
+                <div className="relative mx-auto h-28 w-28 overflow-hidden rounded-full border-2 border-soul-violet/40 shadow-[0_0_20px_rgba(139,92,246,0.35)] transition-transform duration-300 group-hover:scale-110">
+                  <img src={alma.imagem} alt={alma.nome} className="h-full w-full object-cover" />
+                </div>
+                <p className="mt-2 text-sm font-semibold text-white/85">{alma.nome}</p>
+              </div>
+            ))}
+            <div className="flex flex-col items-center justify-center gap-2">
+              <Ghost color="#67e8f9" size={70} variant={2} />
+              <span className="text-sm text-white/60">+ muitas outras</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-gradient-to-r from-soul-violet/20 via-soul-900 to-soul-magenta/20 py-16 text-center">
+        <GhostField
+          ghosts={[
+            { top: "10%", left: "8%", size: 45, color: "#d946ef", opacity: 0.5, variant: 3 },
+            { bottom: "10%", right: "10%", size: 55, color: "#22d3ee", opacity: 0.5, variant: 1 },
+          ]}
+        />
+        <div className="relative mx-auto w-[90%] max-w-2xl">
+          <h2 className="mb-4 text-2xl font-bold text-white sm:text-3xl">
+            Pronto para começar a caçada?
+          </h2>
+          <p className="mb-6 text-white/75">
+            Cadastre seu caçador no Dashboard e comece a acumular essência agora mesmo.
+          </p>
+          <Button onClick={() => navigate(ROTAS.dashboard)}>
+            Começar agora
+            <Rocket className="h-5 w-5" aria-hidden="true" />
+          </Button>
+        </div>
+      </section>
+    </>
+  );
+}

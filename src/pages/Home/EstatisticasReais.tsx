@@ -1,4 +1,7 @@
 import { useCallback } from "react";
+import { nuncaVazio, useApi } from "../../hooks/useApi";
+import { fantasmaService } from "../../services/fantasmaService";
+import { usuarioService } from "../../services/usuarioService";
 
 interface Totais {
   cacadores: number;

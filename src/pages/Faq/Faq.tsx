@@ -1,6 +1,8 @@
 import { CircleHelp, Ghost as GhostIcon, Minus, Plus } from "lucide-react";
 import { useState } from "react";
+import GhostField from "../../components/Ghost/GhostField";
 import { faqItems } from "../../data/faq";
+import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 import FaqQuizBlock from "./FaqQuizBlock";
 
 export default function Faq() {

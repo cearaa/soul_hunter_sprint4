@@ -75,7 +75,7 @@ export default function EstadoView<T>({
           {vazio ?? <p className="text-white/70">Nada por aqui ainda.</p>}
         </div>
       );
-                    
+
     case "ok":
       return <>{children(estado.dados)}</>;
   }
