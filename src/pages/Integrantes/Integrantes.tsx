@@ -1,4 +1,5 @@
 import { Users } from "lucide-react";
+
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AvisoBanner from "../../components/AvisoBanner/AvisoBanner";
@@ -25,44 +26,80 @@ export default function Integrantes() {
     <section className="relative overflow-hidden py-12">
       <GhostField
         ghosts={[
-          { top: "5%", left: "4%", size: 55, color: "#8b5cf6", opacity: 0.3, variant: 2 },
-          { bottom: "8%", right: "5%", size: 65, color: "#22d3ee", opacity: 0.3, variant: 1 },
+          {
+            top: "5%",
+            left: "4%",
+            size: 55,
+            color: "#8b5cf6",
+            opacity: 0.3,
+            variant: 2,
+          },
+          {
+            bottom: "8%",
+            right: "5%",
+            size: 65,
+            color: "#22d3ee",
+            opacity: 0.3,
+            variant: 1,
+          },
         ]}
       />
       <div className="relative mx-auto w-[90%] max-w-6xl text-center">
         <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-soul-violet/40 bg-soul-violet/10 px-4 py-1 text-sm font-semibold text-soul-violet-soft">
-          <Users className="h-4 w-4" aria-hidden="true" />
-          A equipe por trás da caçada
+          <Users className="h-4 w-4" aria-hidden="true" />A equipa por trás da
+          caçada
         </span>
-        <h2 className="mb-3 text-3xl font-bold text-white sm:text-5xl">Integrantes</h2>
+        <h2 className="mb-3 text-3xl font-bold text-white sm:text-5xl">
+          Integrantes
+        </h2>
         <p className="mx-auto mb-10 max-w-2xl text-white/70">
-          Clique em <strong>"Ver mais sobre esse BBzão"</strong> para conhecer o papel de
-          cada caçador(a) no desenvolvimento do SoulHunter.
+          Clique em <strong>"Ver mais sobre esse BBzão"</strong> para conhecer o
+          papel de cada caçador(a) no desenvolvimento do SoulHunter.
         </p>
+
         {aviso && (
           <AvisoBanner
             aviso={aviso}
-            onFechar={() => navigate(location.pathname, { replace: true, state: null })}
+            onFechar={() =>
+              navigate(location.pathname, { replace: true, state: null })
+            }
           />
         )}
-        <div 
-          className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 pt-4 px-2"
-          style={{ scrollbarWidth: 'thin', scrollbarColor: '#8b5cf6 transparent' }}
+
+        <div
+          className="overflow-hidden py-4"
+          style={{
+            maskImage:
+              "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+          }}
         >
-          {integrantes.map((integrante, index) => (
-            <div 
-              key={integrante.id} 
-              className="snap-center shrink-0 w-[280px] sm:w-[320px] flex"
-            >
-              <CardIntegrante
-                integrante={integrante}
-                index={index}
-                isExpanded={expandedId === integrante.id}
-                ghostColor={ghostColors[index % ghostColors.length]}
-                onToggle={toggleExpanded}
-              />
-            </div>
-          ))}
+          <div
+            className="marquee-track"
+            style={{
+              animationDuration: `${integrantes.length * 8}s`,
+              animationPlayState: expandedId ? "paused" : undefined,
+            }}
+          >
+            {[0, 1].map((copia) =>
+              integrantes.map((integrante, index) => (
+                <div
+                  key={`${copia}-${integrante.id}`}
+                  aria-hidden={copia === 1}
+                  className="shrink-0 w-[280px] sm:w-[320px] flex pr-6"
+                >
+                  <CardIntegrante
+                    integrante={integrante}
+                    index={index}
+                    isExpanded={expandedId === integrante.id}
+                    ghostColor={ghostColors[index % ghostColors.length]}
+                    onToggle={toggleExpanded}
+                  />
+                </div>
+              ))
+            )}
+          </div>
         </div>
       </div>
     </section>
