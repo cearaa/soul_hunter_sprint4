@@ -28,9 +28,11 @@ interface CardIntegranteProps {
 export default function CardIntegrante({ integrante, index, isExpanded, ghostColor, onToggle }: CardIntegranteProps) {
   return (
     <div
-      className="glass-card group relative overflow-hidden text-left transition-transform duration-300 hover:-translate-y-1 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-sm"
+      
+      className="glass-card group relative overflow-hidden text-left transition-transform duration-300 hover:-translate-y-1 w-full h-full"
       style={{ boxShadow: isExpanded ? `0 0 26px ${ghostColor}33` : undefined }}
     >
+    
       <div className="absolute right-3 top-3 z-10 opacity-70">
         <Ghost color={ghostColor} size={34} variant={((index % 3) + 1) as 1 | 2 | 3} />
       </div>
