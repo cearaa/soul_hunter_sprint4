@@ -241,9 +241,20 @@ export default function Contato() {
               id="contactForm"
               onSubmit={handleSubmit(onSubmit)}
               noValidate
-              className="glass-card flex flex-col gap-5 p-6 text-left transition-shadow duration-500 sm:p-8"
-              style={{ boxShadow: `0 0 32px ${corDestaque}1a` }}
+              className="glass-card relative isolate flex flex-col gap-5 p-6 text-left transition-all duration-500 sm:p-8"
+              style={{
+                boxShadow: `0 0 32px ${corDestaque}1a`,
+                borderColor: urgenciaAtual ? `${corDestaque}55` : undefined,
+              }}
             >
+              <div
+                className="pointer-events-none absolute inset-0 -z-10 rounded-[inherit] transition-colors duration-500"
+                style={{
+                  backgroundColor: urgenciaAtual ? `${urgenciaAtual.color}1a` : "transparent",
+                }}
+                aria-hidden="true"
+              />
+
               <div>
                 <div className="mb-2 flex items-center justify-between text-xs text-white/60">
                   <span className="font-semibold">Progresso do formulário</span>
@@ -389,22 +400,26 @@ export default function Contato() {
                     return (
                       <label
                         key={urgencia.value}
-                        className={`relative flex cursor-pointer flex-col items-center gap-1 rounded-xl border p-3 text-center transition-all duration-300 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-soul-900 ${
+                        className={`group relative flex cursor-pointer flex-col items-center gap-1 rounded-xl border p-3 text-center transition-all duration-300 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-soul-900 ${
                           selecionada
                             ? "-translate-y-0.5"
                             : errors.urgencia
-                              ? "border-rose-400/50 bg-rose-500/5 hover:bg-white/10"
-                              : "border-white/10 bg-white/5 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/10"
+                              ? "border-rose-400/50 bg-rose-500/5 hover:-translate-y-0.5 hover:border-[var(--cor)] hover:bg-[color-mix(in_srgb,var(--cor)_20%,transparent)]"
+                              : "border-white/10 bg-white/5 hover:-translate-y-0.5 hover:border-[var(--cor)] hover:bg-[color-mix(in_srgb,var(--cor)_20%,transparent)] hover:shadow-[0_0_18px_color-mix(in_srgb,var(--cor)_35%,transparent)]"
                         }`}
                         style={
                           selecionada
                             ? {
                                 borderColor: urgencia.color,
-                                backgroundColor: `${urgencia.color}1f`,
+                                backgroundColor: `${urgencia.color}33`,
                                 boxShadow: `0 0 20px ${urgencia.color}55`,
                                 ["--tw-ring-color" as string]: urgencia.color,
+                                ["--cor" as string]: urgencia.color,
                               }
-                            : { ["--tw-ring-color" as string]: urgencia.color }
+                            : {
+                                ["--tw-ring-color" as string]: urgencia.color,
+                                ["--cor" as string]: urgencia.color,
+                              }
                         }
                       >
                         <input
@@ -417,18 +432,19 @@ export default function Contato() {
                           })}
                         />
                         <span
-                          className="flex h-9 w-9 items-center justify-center rounded-full transition-colors duration-300"
-                          style={{
-                            backgroundColor: selecionada ? `${urgencia.color}2a` : "rgba(255,255,255,0.06)",
-                            color: selecionada ? urgencia.color : "rgba(255,255,255,0.7)",
-                          }}
+                          className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.06] text-white/70 transition-colors duration-300 group-hover:text-[var(--cor)]"
+                          style={
+                            selecionada
+                              ? { backgroundColor: `${urgencia.color}2a`, color: urgencia.color }
+                              : undefined
+                          }
                           aria-hidden="true"
                         >
                           <urgencia.icon className="h-5 w-5" />
                         </span>
                         <span
-                          className="text-sm font-semibold"
-                          style={{ color: selecionada ? urgencia.color : "rgba(255,255,255,0.85)" }}
+                          className="text-sm font-semibold text-white/85 transition-colors duration-300 group-hover:text-[var(--cor)]"
+                          style={selecionada ? { color: urgencia.color } : undefined}
                         >
                           {urgencia.label}
                         </span>
