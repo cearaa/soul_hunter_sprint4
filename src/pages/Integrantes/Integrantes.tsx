@@ -46,7 +46,7 @@ export default function Integrantes() {
       />
       <div className="relative mx-auto w-[90%] max-w-6xl text-center">
         <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-soul-violet/40 bg-soul-violet/10 px-4 py-1 text-sm font-semibold text-soul-violet-soft">
-          <Users className="h-4 w-4" aria-hidden="true" />A equipa por trás da
+          <Users className="h-4 w-4" aria-hidden="true" />A equipe por trás da
           caçada
         </span>
         <h2 className="mb-3 text-3xl font-bold text-white sm:text-5xl">
@@ -67,7 +67,7 @@ export default function Integrantes() {
         )}
 
         <div
-          className="overflow-hidden py-4"
+          className="overflow-hidden py-8"
           style={{
             maskImage:
               "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
@@ -78,7 +78,7 @@ export default function Integrantes() {
           <div
             className="marquee-track"
             style={{
-              animationDuration: `${integrantes.length * 8}s`,
+              animationDuration: `${integrantes.length * 14}s`,
               animationPlayState: expandedId ? "paused" : undefined,
             }}
           >
