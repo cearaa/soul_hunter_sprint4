@@ -1,0 +1,67 @@
+import { CircleHelp, Ghost as GhostIcon, Minus, Plus } from "lucide-react";
+import { useState } from "react";
+import { faqItems } from "../../data/faq";
+import FaqQuizBlock from "./FaqQuizBlock";
+
+export default function Faq() {
+  useDocumentTitle("FAQ");
+  const [openId, setOpenId] = useState<string | null>(faqItems[0]?.id ?? null);
+
+  function toggleItem(id: string) {
+    setOpenId((current) => (current === id ? null : id));
+  }
+
+  return (
+    <section className="relative overflow-hidden py-12">
+      <GhostField
+        ghosts={[
+          { top: "6%", left: "4%", size: 55, color: "#d946ef", opacity: 0.35, variant: 1 },
+          { bottom: "10%", right: "6%", size: 65, color: "#8b5cf6", opacity: 0.3, variant: 2 },
+        ]}
+      />
+      <div className="relative mx-auto w-[90%] max-w-4xl text-center">
+        <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-soul-magenta/40 bg-soul-magenta/10 px-4 py-1 text-sm font-semibold text-soul-magenta">
+          <CircleHelp className="h-4 w-4" aria-hidden="true" />
+          Dúvidas de caçador(a)
+        </span>
+        <h2 className="mb-3 text-3xl font-bold text-white sm:text-5xl">
+          Perguntas Frequentes
+        </h2>
+        <p className="mb-10 text-white/70">
+          Além de tirar dúvidas, algumas perguntas trazem um mini quiz para você revisar o que
+          aprendeu — sem pressão, pode errar à vontade.{" "}
+          <GhostIcon className="inline h-4 w-4 align-[-2px] text-soul-magenta" aria-hidden="true" />
+        </p>
+
+        <div className="space-y-3 text-left">
+          {faqItems.map((item) => {
+            const isOpen = openId === item.id;
+            return (
+              <div
+                key={item.id}
+                className="glass-card overflow-hidden transition-all duration-300"
+              >
+                <button
+                  className="flex w-full items-center justify-between p-4 text-left text-lg font-bold text-white"
+                  onClick={() => toggleItem(item.id)}
+                  aria-expanded={isOpen}
+                >
+                  {item.pergunta}
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-soul-magenta/15 text-soul-magenta transition-transform duration-300" aria-hidden="true">
+                    {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                  </span>
+                </button>
+                {isOpen && (
+                  <div className="px-4 pb-4">
+                    <p className="text-white/75">{item.resposta}</p>
+                    {item.quiz && <FaqQuizBlock quiz={item.quiz} />}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
