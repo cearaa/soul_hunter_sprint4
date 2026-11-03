@@ -1,5 +1,5 @@
 import carlosFoto from "../assets/img/carlos.jpeg";
-import fabricioFoto from "../assets/img/fabricio.png";
+import fabricioFoto from "../assets/img/fabricio.jpeg";
 import giovanniFoto from "../assets/img/giovanni.jpeg";
 import italoFoto from "../assets/img/italo.jpeg";
 import tarikFoto from "../assets/img/tarik.jpeg";
