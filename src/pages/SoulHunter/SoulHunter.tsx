@@ -1,12 +1,13 @@
-import { Gamepad2, MessageSquareHeart, QrCode, ScanLine, Trophy, UserPlus } from "lucide-react";
-import { useState } from "react";
+import { Gamepad2, MessageSquareHeart, ScanLine, Trophy, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
+import qrCodeBeta from "../../assets/img/qrcode/qrcode-beta.svg";
 import CardFantasma from "../../components/CardFantasma/CardFantasma";
 import GhostField from "../../components/Ghost/GhostField";
 import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 import { ROTAS } from "../../routes/paths";
 
-const QR_CODE_URL = "https://i.ibb.co/Z6G8nb18/QRCode-F-cil.png";
+/** Endereço da BETA. É a MESMA URL usada para gerar o qrcode-beta.svg. */
+export const JOGO_BETA_URL = "https://soul-hunter-mvp.vercel.app";
 const FANTASMA_EXEMPLO_URL = "https://i.ibb.co/0jzBdZgH/Captura-de-tela-2026-09-13-182316.png";
 
 const passos = [
@@ -29,7 +30,6 @@ const passos = [
 
 export default function SoulHunter() {
   useDocumentTitle("Jogar");
-  const [qrFalhou, setQrFalhou] = useState(false);
 
   return (
     <section className="relative overflow-hidden py-10 md:py-12">
@@ -51,22 +51,13 @@ export default function SoulHunter() {
 
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[auto_1fr] md:gap-10 md:text-left">
           <div className="glass-card mx-auto flex w-56 flex-col items-center gap-3 p-4 sm:w-60">
-            {qrFalhou ? (
-              <div
-                role="img"
-                aria-label="QR Code indisponível"
-                className="flex h-44 w-44 items-center justify-center rounded-xl bg-white/5 text-white/50 sm:h-48 sm:w-48"
-              >
-                <QrCode className="h-16 w-16" aria-hidden="true" />
-              </div>
-            ) : (
-              <img
-                src={QR_CODE_URL}
-                alt="QR Code para abrir o jogo SoulHunter"
-                onError={() => setQrFalhou(true)}
-                className="h-44 w-44 rounded-xl bg-white p-2 sm:h-48 sm:w-48"
-              />
-            )}
+            <img
+              src={qrCodeBeta}
+              alt={`QR Code para abrir a versão BETA do SoulHunter em ${JOGO_BETA_URL}`}
+              width={192}
+              height={192}
+              className="h-44 w-44 rounded-xl bg-white p-2 sm:h-48 sm:w-48"
+            />
             <p className="text-xs text-white/60">Aponte a câmera para jogar</p>
           </div>
 
