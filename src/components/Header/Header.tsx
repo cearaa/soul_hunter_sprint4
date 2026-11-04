@@ -5,6 +5,7 @@ import {
   House,
   Mail,
   Menu,
+  Swords,
   Crosshair,
   Gamepad2,
   Target,
@@ -35,7 +36,7 @@ const navItems: NavItem[] = [
   { label: "Caçadores", to: ROTAS.cacadores, icon: Crosshair },
   { label: "Fantasmas", to: ROTAS.fantasmas, icon: Ghost },
   { label: "Jogar", to: ROTAS.jogar, icon: Gamepad2 },
-  { label: "Cardgame", to: ROTAS.cardgame, icon: Gamepad2 },
+  { label: "Card Game", to: ROTAS.cardgame, icon: Swords },
 ];
 
 export default function Header() {
@@ -55,7 +56,7 @@ export default function Header() {
     <header
       className={`sticky top-0 z-50 border-b border-white/10 bg-gradient-to-r ${accent.stripe} shadow-lg transition-colors duration-700`}
     >
-      <div className="mx-auto flex w-[92%] max-w-7xl items-center justify-between py-3">
+      <div className="mx-auto flex w-[92%] max-w-7xl items-center justify-between gap-4 py-3 xl:w-[96%]">
         <NavLink
           to={ROTAS.home}
           end
@@ -90,7 +91,7 @@ export default function Header() {
               aria-label={item.label}
               onClick={closeMenu}
               className={({ isActive }) =>
-                `flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-white/90 transition-all duration-300 hover:bg-white/15 hover:text-white xl:px-2.5 xl:text-sm ${
+                `flex items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-white/90 transition-all duration-300 hover:bg-white/15 hover:text-white xl:gap-1 xl:px-2 xl:text-sm ${
                   isActive ? "bg-white/20 font-bold text-white shadow-inner" : ""
                 }`
               }
