@@ -22,6 +22,9 @@
   --color-soul-surface-light: #142f4d;
 
   --font-display: "Poppins", "Segoe UI", Arial, sans-serif;
+
+  /* Desktop a partir de 992px, como pede a rubrica (padrão do Tailwind é 1024px) */
+  --breakpoint-lg: 62rem;
 }
 
 html {

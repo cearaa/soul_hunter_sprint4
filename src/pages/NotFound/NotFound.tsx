@@ -14,8 +14,8 @@ export default function NotFound() {
         ]}
       />
       <div className="relative">
-        <h2 className="mb-4 text-6xl font-bold text-soul-cyan neon-text">404</h2>
-        <p className="mb-8 text-lg text-white/80">
+        <h2 className="mb-4 text-5xl font-bold sm:text-6xl lg:text-7xl text-soul-cyan neon-text">404</h2>
+        <p className="mx-auto mb-8 max-w-md px-4 text-base text-white/80 sm:text-lg">
           Ops! Esse fantasma fugiu — essa página não existe no SoulHunter.
         </p>
         <ButtonLink to="/">Voltar para a Home</ButtonLink>
