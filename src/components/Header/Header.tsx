@@ -35,6 +35,7 @@ const navItems: NavItem[] = [
   { label: "Caçadores", to: ROTAS.cacadores, icon: Crosshair },
   { label: "Fantasmas", to: ROTAS.fantasmas, icon: Ghost },
   { label: "Jogar", to: ROTAS.jogar, icon: Gamepad2 },
+  { label: "Cardgame", to: ROTAS.cardgame, icon: Gamepad2 },
 ];
 
 export default function Header() {
