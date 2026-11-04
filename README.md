@@ -91,6 +91,7 @@ Esta é a **Sprint 4** do projeto: o front-end em **React + Vite + TypeScript** 
 - **Fantasmas** (`/fantasmas`): coleção de almas com criação, edição e exclusão, vinculadas ao caçador dono.
 - **Dashboard** (`/dashboard`): escolha do caçador (lembrado no aparelho), registro real de **reciclagem** e **deslocamento**, prévia da essência a ganhar, posição no ranking, pista do dia e diário sustentável com 15 hábitos.
 - **Ranking** (`/ranking`): classificação ao vivo por essência, com medalhas e destaque do jogador atual.
+- **Card Game** (`/cardgame`): duelo online 1 contra 1 com as cartas de fantasmas. Cria ou entra em uma sala por convite, joga seis duelos e enfrenta o chefe final Nexus NEXT; inclui o catálogo das 37 cartas.
 - **Home com números reais**: caçadores cadastrados, almas capturadas e essência acumulada vêm da API.
 - **Páginas institucionais**: Home, Integrantes (com rota dinâmica), Sobre, FAQ com mini quiz, Contato com formulário validado e a página **Jogar** (QR Code da versão BETA).
 - **Estados de tela** em tudo que usa a API: carregando, erro (com botão de nova tentativa) e resposta vazia.
@@ -146,10 +147,12 @@ URL base: `https://soulhunter-rm571411.onrender.com/soulhunter`, configurável p
 - `src/services/usuarioService.ts` e `fantasmaService.ts`: uma função por endpoint. **Nenhum componente chama `fetch` diretamente.**
 - `src/hooks/useApi.ts`: transforma uma leitura da API em um estado tipado (`carregando`, `erro`, `vazio` ou `ok`).
 - `src/components/EstadoView`: renderiza cada estado de forma padronizada.
+- `src/services/cardGameService.ts`: chamadas da arena do Card Game (cartas, partidas e jogadas).
 
 **Observações**
 
 - A página de **Contato** continua com envio simulado: a API não possui endpoint de mensagens.
+- O **Card Game** usa uma API de partidas separada (`https://soul-hunter-api.vercel.app/api`). Como ela não libera CORS, o front chama `/api/cardgame/...`, que é repassado pelo proxy do Vite no ambiente local e pelo *rewrite* do `vercel.json` no deploy.
 - O código do caçador atual fica em `localStorage`; essência e título vêm sempre do banco.
 
 ---
@@ -172,6 +175,7 @@ As rotas são declaradas com tipagem em `src/routes/` (`paths.ts` e `index.tsx`)
 | `/cacadores/:id` | **dinâmica** | Perfil do caçador (solução) |
 | `/fantasmas` | estática | Fantasmas (solução) |
 | `/soulhunter` | estática | Jogar (QR Code BETA) |
+| `/cardgame` | estática | Card Game (duelo online) |
 | `/fantasma` | estática | Easter egg (link no rodapé) |
 | `*` | — | Página 404 |
 
@@ -214,14 +218,14 @@ Os tipos ficam em `src/types/` (`api.ts` e `index.ts`):
 │   ├── hooks/               # useApi, useCheckinsDiarios, useDocumentTitle
 │   ├── pages/               # Home, Cacadores, Fantasmas, Dashboard, Ranking...
 │   ├── routes/              # paths.ts (rotas tipadas) e index.tsx (roteador)
-│   ├── services/            # api.ts, usuarioService.ts, fantasmaService.ts
+│   ├── services/            # api.ts, usuarioService.ts, fantasmaService.ts, cardGameService.ts
 │   ├── theme/               # cores por página e estilos de formulário
 │   ├── types/               # interfaces e tipos TypeScript
 │   ├── utils/               # ranking, títulos, regras de essência, avisos
 │   ├── App.tsx
 │   └── main.tsx
 ├── .env.example             # modelo da variável VITE_API_URL
-├── vercel.json              # rewrite para a SPA funcionar em qualquer rota
+├── vercel.json              # rewrites: SPA em qualquer rota e proxy da API do Card Game
 ├── package.json
 └── vite.config.ts
 ```
