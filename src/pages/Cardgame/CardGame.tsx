@@ -1,14 +1,14 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { Espectro, FaceCarta } from "../../components/Cartas/Cartas";
-import { temaCarta } from "../../hooks/cartaUtils";
+import { temaCarta } from "../../utils/cartas";
 import {
   acessarPartida,
   listarCartas,
   type Carta,
   type Partida,
   type Sessao,
-} from "../../hooks/apiCardGame";
+} from "../../services/cardGameService";
 import Arena from "../../components/Arena/Arena";
 import "./estilos.css";
 

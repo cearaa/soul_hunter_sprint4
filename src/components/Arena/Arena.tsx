@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import { consultarPartida, enviarJogada, ErroApi, type Carta, type Jogada, type Partida, type Sessao } from '../../hooks/apiCardGame';
+import { consultarPartida, enviarJogada, ErroApi, type Carta, type Jogada, type Partida, type Sessao } from "../../services/cardGameService";
 import { FaceCarta } from "../../components/Cartas/Cartas";
-import { raridades, temaCarta } from "../../hooks/cartaUtils.ts";
+import { raridades, temaCarta } from "../../utils/cartas";
 
 function versao(partida: Partida) {
   // Entre rodadas, o rival entra e cada envio muda de pendente para confirmado uma vez.

@@ -1,4 +1,4 @@
-import type { Carta, Raridade } from "./apiCardGame";
+import type { Carta, Raridade } from "../services/cardGameService";
 
 export const raridades: Record<Raridade, string> = {
   comum: "Comum",
