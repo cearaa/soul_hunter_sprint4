@@ -3,6 +3,7 @@ import App from "../App";
 import NotFound from "../pages/NotFound/NotFound";
 import Cacadores from "../pages/Cacadores/Cacadores";
 import CacadorDetalhe from "../pages/Cacadores/CacadorDetalhe";
+import Cardgame from "../pages/Cardgame/CardGame";
 import Contato from "../pages/Contato/Contato";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Fantasma from "../pages/Fantasma/Fantasma";
@@ -28,6 +29,7 @@ const filhas: RouteObject[] = [
   { path: ROTAS.cacadores.slice(1), element: <Cacadores /> },
   { path: ROTAS.fantasmas.slice(1), element: <Fantasmas /> },
   { path: ROTAS.jogar.slice(1), element: <SoulHunter /> },
+  { path: ROTAS.cardgame.slice(1), element: <Cardgame /> },
   { path: ROTAS.fantasma.slice(1), element: <Fantasma /> },
 
   // Rotas dinâmicas (parâmetro :id)
