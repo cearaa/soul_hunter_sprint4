@@ -6,7 +6,7 @@ export function Espectro({ variante = 0 }: { variante?: number }) {
   const id = useId();
 
   return (
-    <svg className="espectro" viewBox="0 0 180 144" fill="none" aria-hidden="true">
+    <svg className="block w-full [filter:drop-shadow(0_0_10px_color-mix(in_srgb,currentColor_34%,transparent))]" viewBox="0 0 180 144" fill="none" aria-hidden="true">
       <defs>
         <linearGradient id={id} x1="90" y1="16" x2="90" y2="128" gradientUnits="userSpaceOnUse">
           <stop stopColor="currentColor" stopOpacity=".87" />
@@ -52,28 +52,29 @@ export function FaceCarta({ carta }: { carta: Carta }) {
 
   return (
     <>
-      <span className="carta-topo">
+      {/* in-[label]: na escolha da arena, deixa espaço para o radio no canto */}
+      <span className="flex flex-wrap justify-between gap-x-[5px] gap-y-[3px] font-mono text-[.59rem] leading-[1.3] font-bold uppercase in-[label]:pr-6">
         <span>{fantasma ? raridades[carta.raridade] : "Mística"}</span>
         <span>{carta.id}</span>
       </span>
 
-      <span className="carta-arte">
+      <span className="my-[5px] grid min-h-[88px] place-items-center rounded-md bg-[#080e1d70] [&>svg]:w-[min(100%,116px)]">
         <Espectro variante={fantasma ? Number(carta.id.slice(3)) : 2} />
       </span>
 
-      <strong>{carta.nome}</strong>
+      <strong className="mb-[7px] text-[.88rem] text-[#f2f6ff] wrap-anywhere">{carta.nome}</strong>
 
       {fantasma ? (
-        <span className="atributos">
-          <span>ATQ <b>{carta.ataque}</b></span>
-          <span>DEF <b>{carta.defesa}</b></span>
+        <span className="mt-auto flex flex-wrap gap-x-2.5 gap-y-[5px] font-mono text-[.65rem] leading-[1.4]">
+          <span>ATQ <b className="text-[#edf4ff]">{carta.ataque}</b></span>
+          <span>DEF <b className="text-[#edf4ff]">{carta.defesa}</b></span>
         </span>
       ) : (
-        <span className="habilidade">{carta.habilidade}</span>
+        <span className="text-[.78rem] leading-[1.35] text-cg-suave">{carta.habilidade}</span>
       )}
 
-      {carta.uso === "promocional" ? <small>Promocional</small> : null}
-      {carta.uso === "chefe" ? <small>Chefe final</small> : null}
+      {carta.uso === "promocional" ? <small className="mt-1.5 text-[.7rem]">Promocional</small> : null}
+      {carta.uso === "chefe" ? <small className="mt-1.5 text-[.7rem]">Chefe final</small> : null}
     </>
   );
 }

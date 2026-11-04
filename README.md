@@ -38,8 +38,8 @@ Esta é a **Sprint 4** do projeto: o front-end em **React + Vite + TypeScript** 
 | Recurso | Link |
 |---|---|
 | 💻 **Repositório no GitHub** | <https://github.com/cearaa/soul_hunter_sprint4> |
-| 🌐 **Aplicação publicada na Vercel** | ⚠️ _adicionar a URL do deploy (ex.: `https://soul-hunter.vercel.app`)_ |
-| 🎥 **Vídeo de apresentação (YouTube, até 3 min)** | ⚠️ _adicionar o link do vídeo no YouTube_ |
+| 🌐 **Aplicação publicada na Vercel** | <https://soulhuntersprint4.vercel.app> |
+| 🎥 **Vídeo de apresentação (YouTube, até 3 min)** | <https://youtu.be/GKpSchKcyiM> |
 | 🔌 **API Java publicada (Render)** | <https://soulhunter-rm571411.onrender.com/soulhunter> |
 
 > ⏳ **Atenção:** a API roda no plano gratuito do Render e hiberna quando fica parada. A **primeira** requisição pode levar até **1 minuto**. A tela mostra um aviso de carregamento e um botão "Tentar de novo" caso falhe.
