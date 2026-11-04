@@ -10,6 +10,7 @@ export const ROTAS = {
   cacadores: "/cacadores",
   fantasmas: "/fantasmas",
   jogar: "/soulhunter",
+  cardgame: "/cardgame",
   fantasma: "/fantasma",
 } as const;
 
