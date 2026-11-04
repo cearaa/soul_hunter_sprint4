@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { Espectro, FaceCarta } from "../../components/Cartas/Cartas";
-import { temaCarta } from "../../utils/cartas";
+import { cg, temaCarta } from "../../utils/cartas";
 import {
   acessarPartida,
   listarCartas,
@@ -11,7 +11,6 @@ import {
 } from "../../services/cardGameService";
 import Arena from "../../components/Arena/Arena";
 import { useDocumentTitle } from "../../hooks/useDocumentTitle";
-import "./estilos.css";
 
 const chaveSessao = "soul-hunter-cardgame:sessao:v1";
 const chaveTentativa = "soul-hunter-cardgame:entrada:v1";
@@ -142,46 +141,50 @@ function Lobby({ aoEntrar }: { aoEntrar: (sessao: Sessao, partida: Partida) => v
 
   return (
     <>
-      <section className="hero" aria-labelledby="titulo">
-        <div className="hero-texto">
-          <p className="etiqueta">
-            <span className="luz" /> CARDGAME ONLINE · 1 CONTRA 1
+      <section
+        className="relative isolate grid min-h-[412px] grid-cols-1 items-center pt-6 pb-[9px] before:absolute before:inset-0 before:-z-10 before:bg-[radial-gradient(ellipse_at_50%_70%,#1a2b52,transparent_70%)] before:opacity-[.68] md:grid-cols-2 md:gap-6 md:py-[38px] md:before:bg-[radial-gradient(ellipse_at_75%_49%,#172a54_0%,#121c35_35%,transparent_67%)]"
+        aria-labelledby="titulo"
+      >
+        <div className="pt-2 pb-3">
+          <p className={cg.etiqueta}>
+            <span className={cg.luz} /> CARDGAME ONLINE · 1 CONTRA 1
           </p>
-          <h1 id="titulo">
-            Duelo de<br /><em>Almas</em>
+          <h1 id="titulo" className="mt-4 mb-5 text-[clamp(3.5rem,14vw,5.3rem)] leading-[.91] font-bold tracking-[-.078em] md:text-[clamp(4rem,8vw,7rem)]">
+            Duelo de<br /><em className="text-cg-ciano not-italic">Almas</em>
           </h1>
-          <p className="descricao">
+          <p className="max-w-[35ch] text-[1.06rem] leading-relaxed text-cg-suave">
             Invoque seus fantasmas, combine cartas místicas e encare Nexus NEXT no confronto final.
           </p>
-          <div className="hero-dados">
+          <div className="mt-[26px] flex flex-wrap gap-x-[19px] gap-y-3 text-[.78rem] text-cg-suave [&_b]:mr-[3px] [&_b]:font-mono [&_b]:text-[#edf6ff]">
             <span><b>02</b> caçadores</span>
             <span><b>06</b> duelos</span>
             <span><b>01</b> chefe final</span>
           </div>
         </div>
 
-        <div className="vitrine" aria-hidden="true">
-          <div className="orbita orbita-externa" />
-          <div className="orbita orbita-interna" />
-          <div className="carta-vitrine carta-esquerda"><Espectro /></div>
-          <div className="carta-vitrine carta-direita"><Espectro variante={2} /></div>
-          <div className="carta-vitrine carta-central">
-            <div><span>LENDÁRIO</span><span>SH-025</span></div>
+        <div className="relative grid min-h-[252px] place-items-center md:min-h-[324px]" aria-hidden="true">
+          <div className="absolute h-[91%] w-[83%] max-w-[425px] -rotate-14 rounded-full border border-[#66d4f72c]" />
+          <div className="absolute h-[78%] w-[72%] max-w-[365px] rotate-13 rounded-full border border-dashed border-[#b59af83d]" />
+          <div className="absolute flex flex-col items-center justify-center rounded-[13px] border border-current p-3 scale-[.77] md:scale-100 after:pointer-events-none after:absolute after:inset-[7px] after:rounded-lg after:border after:border-current after:opacity-20 h-[219px] w-[154px] bg-[linear-gradient(155deg,#172e45,#101326_72%)] text-cg-ciano shadow-[0_12px_30px_#0007] [transform:translate(-75px,19px)_rotate(-17deg)]"><Espectro /></div>
+          <div className="absolute flex flex-col items-center justify-center rounded-[13px] border border-current p-3 scale-[.77] md:scale-100 after:pointer-events-none after:absolute after:inset-[7px] after:rounded-lg after:border after:border-current after:opacity-20 h-[219px] w-[154px] bg-[linear-gradient(155deg,#352851,#11142a_72%)] text-cg-violeta shadow-[0_12px_30px_#0007] [transform:translate(75px,19px)_rotate(17deg)]"><Espectro variante={2} /></div>
+          <div className="absolute flex flex-col items-center justify-center rounded-[13px] border border-current p-3 scale-[.77] md:scale-100 after:pointer-events-none after:absolute after:inset-[7px] after:rounded-lg after:border after:border-current after:opacity-20 h-[245px] w-[168px] bg-[radial-gradient(circle_at_50%_45%,#524334,#1d1d2b_48%,#161727_74%)] text-[#ffda89] shadow-[0_18px_40px_#0009,0_0_30px_#ffcd7820] [transform:translateY(-10px)_rotate(-5deg)]">
+            <div className="flex w-full justify-between px-[3px] font-mono text-[.58rem] font-bold tracking-[.04em]"><span>LENDÁRIO</span><span>SH-025</span></div>
             <Espectro variante={1} />
-            <strong>NEXUS NEXT</strong>
-            <small>✦ CHEFE FINAL ✦</small>
+            <strong className="text-[1.02rem] tracking-[.075em]">NEXUS NEXT</strong>
+            <small className="mt-[9px] font-mono text-[.53rem] tracking-[.13em]">✦ CHEFE FINAL ✦</small>
           </div>
         </div>
       </section>
 
-      <section id="arena" className="entrada-grid">
-        <div className="painel">
-          <p className="etiqueta">LOBBY</p>
-          <h2>Entrar na arena</h2>
+      <section id="arena" className="grid grid-cols-1 gap-[18px] md:grid-cols-[1.13fr_1fr]">
+        <div className={cg.painel}>
+          <p className={cg.etiqueta}>LOBBY</p>
+          <h2 className={cg.titulo}>Entrar na arena</h2>
 
-          <div className="alternador" aria-label="Modo de acesso">
+          <div className="my-4 flex flex-wrap gap-1.5 rounded-[10px] border border-cg-linha bg-[#080f1e] p-1" aria-label="Modo de acesso">
             <button
               type="button"
+              className={cg.alternar}
               onClick={() => mudarModo("criar")}
               aria-pressed={modo === "criar"}
               disabled={enviando}
@@ -190,6 +193,7 @@ function Lobby({ aoEntrar }: { aoEntrar: (sessao: Sessao, partida: Partida) => v
             </button>
             <button
               type="button"
+              className={cg.alternar}
               onClick={() => mudarModo("entrar")}
               aria-pressed={modo === "entrar"}
               disabled={enviando}
@@ -198,10 +202,11 @@ function Lobby({ aoEntrar }: { aoEntrar: (sessao: Sessao, partida: Partida) => v
             </button>
           </div>
 
-          <form onSubmit={enviar} className="formulario">
-            <label>
+          <form onSubmit={enviar} className={cg.formulario}>
+            <label className={cg.rotulo}>
               Nome de caçador
               <input
+                className={cg.campo}
                 value={nome}
                 onChange={(evento) => setNome(evento.target.value)}
                 maxLength={40}
@@ -213,9 +218,10 @@ function Lobby({ aoEntrar }: { aoEntrar: (sessao: Sessao, partida: Partida) => v
             </label>
 
             {modo === "entrar" ? (
-              <label>
+              <label className={cg.rotulo}>
                 Código da sala
                 <input
+                  className={cg.campo}
                   value={codigo}
                   onChange={(evento) => setCodigo(evento.target.value)}
                   required
@@ -228,20 +234,20 @@ function Lobby({ aoEntrar }: { aoEntrar: (sessao: Sessao, partida: Partida) => v
               </label>
             ) : null}
 
-            {erro ? <p className="erro" role="alert">{erro}</p> : null}
+            {erro ? <p className={cg.erro} role="alert">{erro}</p> : null}
 
-            <button className="botao primario" disabled={enviando}>
+            <button className={cg.primario} disabled={enviando}>
               {enviando ? "Conectando…" : modo === "criar" ? "Criar partida" : "Entrar na partida"}
-              <span aria-hidden="true">→</span>
+              <span className="ml-2" aria-hidden="true">→</span>
             </button>
           </form>
         </div>
 
-        <div className="painel guia" id="regras">
-          <p className="etiqueta">REGRAS RÁPIDAS</p>
-          <h2>Como jogar</h2>
+        <div className={`${cg.painel} bg-[linear-gradient(155deg,#111c32,#0d1729)]`} id="regras">
+          <p className={`${cg.etiquetaBase} text-cg-violeta`}>REGRAS RÁPIDAS</p>
+          <h2 className={cg.titulo}>Como jogar</h2>
 
-          <ol className="passos">
+          <ol className="mt-4 grid gap-3.5 [&_li]:flex [&_li]:items-start [&_li]:gap-3 [&_li>span]:rounded-md [&_li>span]:border [&_li>span]:border-[#3c3561] [&_li>span]:bg-[#211d39] [&_li>span]:px-[7px] [&_li>span]:py-[5px] [&_li>span]:font-mono [&_li>span]:text-[.72rem] [&_li>span]:font-bold [&_li>span]:text-cg-violeta [&_p]:mt-0.5 [&_p]:text-[.88rem] [&_p]:leading-relaxed [&_p]:text-cg-suave">
             <li>
               <span>01</span>
               <div>
@@ -282,17 +288,18 @@ function Catalogo({ cartas, erro, carregar }: {
   const visiveis = expandido ? filtradas : filtradas.slice(0, 6);
 
   return (
-    <section id="catalogo" className="painel catalogo">
-      <div className="linha-secao">
+    <section id="catalogo" className={`${cg.painel} mt-[18px] mb-8`}>
+      <div className={cg.linhaSecao}>
         <div>
-          <p className="etiqueta">COLEÇÃO</p>
-          <h2>Catálogo de cartas</h2>
+          <p className={cg.etiqueta}>COLEÇÃO</p>
+          <h2 className={cg.titulo}>Catálogo de cartas</h2>
         </div>
 
         {cartas.length > 0 ? (
-          <label>
+          <label className={cg.rotulo}>
             Tipo de carta
             <select
+              className={`${cg.campo} min-w-[130px]`}
               value={filtro}
               onChange={(evento) => {
                 setFiltro(evento.target.value as typeof filtro);
@@ -309,8 +316,8 @@ function Catalogo({ cartas, erro, carregar }: {
 
       {erro ? (
         <div>
-          <p className="erro" role="alert">{erro}</p>
-          <button type="button" className="botao" onClick={carregar}>
+          <p className={cg.erro} role="alert">{erro}</p>
+          <button type="button" className={cg.botao} onClick={carregar}>
             Tentar novamente
           </button>
         </div>
@@ -318,11 +325,11 @@ function Catalogo({ cartas, erro, carregar }: {
         <p role="status">Carregando cartas…</p>
       ) : (
         <>
-          <p className="suave">{visiveis.length} de {filtradas.length} cartas</p>
+          <p className="text-cg-suave">{visiveis.length} de {filtradas.length} cartas</p>
 
-          <ul className="grade-cartas">
+          <ul className="my-3.5 grid grid-cols-[repeat(auto-fill,minmax(min(100%,142px),1fr))] items-stretch gap-3">
             {visiveis.map((carta) => (
-              <li key={carta.id} className="carta" data-tema={temaCarta(carta)}>
+              <li key={carta.id} className={cg.carta} data-tema={temaCarta(carta)}>
                 <FaceCarta carta={carta} />
               </li>
             ))}
@@ -331,7 +338,7 @@ function Catalogo({ cartas, erro, carregar }: {
           {filtradas.length > 6 ? (
             <button
               type="button"
-              className="botao"
+              className={cg.botao}
               aria-expanded={expandido}
               onClick={() => setExpandido(!expandido)}
             >
@@ -402,8 +409,11 @@ export default function Cardgame() {
   }
 
   return (
-    <section className="cardgame" aria-label="Duelo de Almas">
-      <div className="limite">
+    <section
+      className="bg-cg-fundo font-[family-name:Segoe_UI,system-ui,sans-serif] text-[#eff4ff] scheme-dark"
+      aria-label="Duelo de Almas"
+    >
+      <div className="mx-auto w-[calc(100%-32px)] pb-px md:w-[min(1120px,calc(100%-64px))]">
         {sessao ? (
           <Arena sessao={sessao} inicial={partida} cartas={cartas} aoSair={sair} />
         ) : (
