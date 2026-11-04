@@ -75,6 +75,10 @@ Esta é a **Sprint 4** do projeto: o front-end em **React + Vite + TypeScript** 
 |---|---|
 | ![Sobre](docs/screenshots/sobre.png) | ![FAQ](docs/screenshots/faq.png) |
 
+| Contato | Card Game |
+|---|---|
+| ![Contato](docs/screenshots/contato.png) | ![Card Game](docs/screenshots/cardgame.png) |
+
 **Versão mobile**
 
 <p>
