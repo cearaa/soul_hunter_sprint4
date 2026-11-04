@@ -71,11 +71,16 @@ Esta é a **Sprint 4** do projeto: o front-end em **React + Vite + TypeScript** 
 |---|---|
 | ![Home](docs/screenshots/home.png) | ![Integrantes](docs/screenshots/integrantes.png) |
 
+| Sobre | FAQ |
+|---|---|
+| ![Sobre](docs/screenshots/sobre.png) | ![FAQ](docs/screenshots/faq.png) |
+
 **Versão mobile**
 
-<img src="docs/screenshots/cacadores-mobile.png" alt="Página Caçadores em versão mobile" width="280" />
-
-> As capturas das páginas ligadas à API foram geradas com dados de exemplo; substitua pelas da versão publicada.
+<p>
+  <img src="docs/screenshots/home-mobile.png" alt="Home em versão mobile" width="240" />
+  <img src="docs/screenshots/cacadores-mobile.png" alt="Página Caçadores em versão mobile" width="240" />
+</p>
 
 ---
 
@@ -281,7 +286,7 @@ Sem `.env`, a aplicação já usa a URL da API publicada no Render.
 
 | Almas do jogo | Ícones |
 |---|---|
-| <img src="src/assets/img/almas/james-bones.jpeg" alt="James Bones" width="72" /> <img src="src/assets/img/almas/lord-voldemetro.jpg" alt="Lord Voldemetro" width="72" /> <img src="src/assets/img/almas/passe-man.jpeg" alt="Passe-Man" width="72" /> | <img src="src/assets/img/icones/github.png" alt="GitHub" width="40" /> <img src="src/assets/img/icones/linkedin.png" alt="LinkedIn" width="40" /> |
+| <img src="src/assets/img/almas/james-bones.jpeg" alt="James Bones" width="72" /> <img src="src/assets/img/almas/lord-voldemetro.jpg" alt="Lord Voldemetro" width="72" /> <img src="src/assets/img/almas/passe-man.jpeg" alt="Passe-Man" width="72" /> <img src="src/assets/img/almas/pura-alma.jpg" alt="Pura Alma" width="72" /> | <img src="src/assets/img/icones/github.png" alt="GitHub" width="40" /> <img src="src/assets/img/icones/linkedin.png" alt="LinkedIn" width="40" /> |
 
 Tema noturno com ciano, violeta e magenta (paleta `soul-*` do Tailwind) e fantasmas animados como elemento visual.
 
@@ -296,7 +301,7 @@ Projeto desenvolvido em grupo na **FIAP**, turma **1TDSPH**.
 | <img src="src/assets/img/tarik.jpeg" alt="Tárik" width="72" /> | **Tárik Moussa Alma** | 571411 | 1TDSPH | [GitHub](https://github.com/cearaa) · [LinkedIn](https://www.linkedin.com/in/rikk-alma) |
 | <img src="src/assets/img/giovanni.jpeg" alt="Giovanni" width="72" /> | **Giovanni Azevedo** | 572894 | 1TDSPH | [GitHub](https://github.com/GiovanniDEVazevedo) · [LinkedIn](https://www.linkedin.com/in/giovanni-azevedo-760753353/) |
 | <img src="src/assets/img/italo.jpeg" alt="Italo" width="72" /> | **Italo Neto** | 572912 | 1TDSPH | [GitHub](https://github.com/I-neeto99) · [LinkedIn](https://www.linkedin.com/in/italo-neto-390579345/) |
-| <img src="src/assets/img/fabricio.png" alt="Fabrício" width="72" /> | **Fabrício Aquiles Sales da Silva** | 570985 | 1TDSPH | [GitHub](https://github.com/fabricioaquiles) · [LinkedIn](https://www.linkedin.com/in/fabricioaquiles/) |
+| <img src="src/assets/img/fabricio.jpeg" alt="Fabrício" width="72" /> | **Fabrício Aquiles Sales da Silva** | 570985 | 1TDSPH | [GitHub](https://github.com/fabricioaquiles) · [LinkedIn](https://www.linkedin.com/in/fabricioaquiles/) |
 | <img src="src/assets/img/carlos.jpeg" alt="Carlos" width="72" /> | **Carlos Eduardo Tsucamoto Chiarelli** | 569574 | 1TDSPH | [GitHub](https://github.com/carlostsucamoto) · [LinkedIn](https://www.linkedin.com/in/carlostsucamoto/) |
 
 **Créditos:** ícones por [Lucide](https://lucide.dev); imagens das almas e logotipo produzidos pela equipe.
