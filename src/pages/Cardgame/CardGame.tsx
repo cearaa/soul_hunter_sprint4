@@ -10,6 +10,7 @@ import {
   type Sessao,
 } from "../../services/cardGameService";
 import Arena from "../../components/Arena/Arena";
+import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 import "./estilos.css";
 
 const chaveSessao = "soul-hunter-cardgame:sessao:v1";
@@ -344,6 +345,7 @@ function Catalogo({ cartas, erro, carregar }: {
 }
 
 export default function Cardgame() {
+  useDocumentTitle("Card Game");
   const navigate = useNavigate();
   const [sessao, setSessao] = useState(lerSessao);
   const [partida, setPartida] = useState<Partida | null>(null);
