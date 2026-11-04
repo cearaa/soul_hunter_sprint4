@@ -37,9 +37,9 @@ Esta é a **Sprint 4** do projeto: o front-end em **React + Vite + TypeScript** 
 
 | Recurso | Link |
 |---|---|
-| 💻 **Repositório no GitHub** | `url do github ai cambadinha fazendo favor` |
-| 🌐 **Aplicação publicada na Vercel** | `alguem bota a url da vercel` |
-| 🎥 **Vídeo de apresentação (YouTube, até 3 min)** | `nosso giovanni devAzevedo deveria fazer heim heim` |
+| 💻 **Repositório no GitHub** | <https://github.com/cearaa/soul_hunter_sprint4> |
+| 🌐 **Aplicação publicada na Vercel** | ⚠️ _adicionar a URL do deploy (ex.: `https://soul-hunter.vercel.app`)_ |
+| 🎥 **Vídeo de apresentação (YouTube, até 3 min)** | ⚠️ _adicionar o link do vídeo no YouTube_ |
 | 🔌 **API Java publicada (Render)** | <https://soulhunter-rm571411.onrender.com/soulhunter> |
 
 > ⏳ **Atenção:** a API roda no plano gratuito do Render e hiberna quando fica parada. A **primeira** requisição pode levar até **1 minuto**. A tela mostra um aviso de carregamento e um botão "Tentar de novo" caso falhe.
@@ -71,11 +71,16 @@ Esta é a **Sprint 4** do projeto: o front-end em **React + Vite + TypeScript** 
 |---|---|
 | ![Home](docs/screenshots/home.png) | ![Integrantes](docs/screenshots/integrantes.png) |
 
+| Sobre | FAQ |
+|---|---|
+| ![Sobre](docs/screenshots/sobre.png) | ![FAQ](docs/screenshots/faq.png) |
+
 **Versão mobile**
 
-<img src="docs/screenshots/cacadores-mobile.png" alt="Página Caçadores em versão mobile" width="280" />
-
-> As capturas das páginas ligadas à API foram geradas com dados de exemplo; substitua pelas da versão publicada.
+<p>
+  <img src="docs/screenshots/home-mobile.png" alt="Home em versão mobile" width="240" />
+  <img src="docs/screenshots/cacadores-mobile.png" alt="Página Caçadores em versão mobile" width="240" />
+</p>
 
 ---
 
@@ -86,6 +91,7 @@ Esta é a **Sprint 4** do projeto: o front-end em **React + Vite + TypeScript** 
 - **Fantasmas** (`/fantasmas`): coleção de almas com criação, edição e exclusão, vinculadas ao caçador dono.
 - **Dashboard** (`/dashboard`): escolha do caçador (lembrado no aparelho), registro real de **reciclagem** e **deslocamento**, prévia da essência a ganhar, posição no ranking, pista do dia e diário sustentável com 15 hábitos.
 - **Ranking** (`/ranking`): classificação ao vivo por essência, com medalhas e destaque do jogador atual.
+- **Card Game** (`/cardgame`): duelo online 1 contra 1 com as cartas de fantasmas. Cria ou entra em uma sala por convite, joga seis duelos e enfrenta o chefe final Nexus NEXT; inclui o catálogo das 37 cartas.
 - **Home com números reais**: caçadores cadastrados, almas capturadas e essência acumulada vêm da API.
 - **Páginas institucionais**: Home, Integrantes (com rota dinâmica), Sobre, FAQ com mini quiz, Contato com formulário validado e a página **Jogar** (QR Code da versão BETA).
 - **Estados de tela** em tudo que usa a API: carregando, erro (com botão de nova tentativa) e resposta vazia.
@@ -141,10 +147,12 @@ URL base: `https://soulhunter-rm571411.onrender.com/soulhunter`, configurável p
 - `src/services/usuarioService.ts` e `fantasmaService.ts`: uma função por endpoint. **Nenhum componente chama `fetch` diretamente.**
 - `src/hooks/useApi.ts`: transforma uma leitura da API em um estado tipado (`carregando`, `erro`, `vazio` ou `ok`).
 - `src/components/EstadoView`: renderiza cada estado de forma padronizada.
+- `src/services/cardGameService.ts`: chamadas da arena do Card Game (cartas, partidas e jogadas).
 
 **Observações**
 
 - A página de **Contato** continua com envio simulado: a API não possui endpoint de mensagens.
+- O **Card Game** usa uma API de partidas separada (`https://soul-hunter-api.vercel.app/api`). Como ela não libera CORS, o front chama `/api/cardgame/...`, que é repassado pelo proxy do Vite no ambiente local e pelo *rewrite* do `vercel.json` no deploy.
 - O código do caçador atual fica em `localStorage`; essência e título vêm sempre do banco.
 
 ---
@@ -167,6 +175,7 @@ As rotas são declaradas com tipagem em `src/routes/` (`paths.ts` e `index.tsx`)
 | `/cacadores/:id` | **dinâmica** | Perfil do caçador (solução) |
 | `/fantasmas` | estática | Fantasmas (solução) |
 | `/soulhunter` | estática | Jogar (QR Code BETA) |
+| `/cardgame` | estática | Card Game (duelo online) |
 | `/fantasma` | estática | Easter egg (link no rodapé) |
 | `*` | — | Página 404 |
 
@@ -209,14 +218,14 @@ Os tipos ficam em `src/types/` (`api.ts` e `index.ts`):
 │   ├── hooks/               # useApi, useCheckinsDiarios, useDocumentTitle
 │   ├── pages/               # Home, Cacadores, Fantasmas, Dashboard, Ranking...
 │   ├── routes/              # paths.ts (rotas tipadas) e index.tsx (roteador)
-│   ├── services/            # api.ts, usuarioService.ts, fantasmaService.ts
+│   ├── services/            # api.ts, usuarioService.ts, fantasmaService.ts, cardGameService.ts
 │   ├── theme/               # cores por página e estilos de formulário
 │   ├── types/               # interfaces e tipos TypeScript
 │   ├── utils/               # ranking, títulos, regras de essência, avisos
 │   ├── App.tsx
 │   └── main.tsx
 ├── .env.example             # modelo da variável VITE_API_URL
-├── vercel.json              # rewrite para a SPA funcionar em qualquer rota
+├── vercel.json              # rewrites: SPA em qualquer rota e proxy da API do Card Game
 ├── package.json
 └── vite.config.ts
 ```
@@ -229,7 +238,7 @@ Toda a interface usa apenas utilitários responsivos do Tailwind (`sm:`, `md:`, 
 
 - **Mobile (até 480 px):** uma coluna, menu hambúrguer, tabelas com rolagem interna.
 - **Tablet (768 px):** grades de 2 colunas e formulários lado a lado.
-- **Desktop (992 px ou mais):** grades de 3 colunas, painéis em duas colunas e menu completo a partir de `xl` (1280 px).
+- **Desktop (992 px ou mais):** o breakpoint `lg` foi ajustado para 992 px (`--breakpoint-lg` em `src/index.css`); grades de 3 colunas, painéis em duas colunas e menu completo a partir de `xl` (1280 px).
 
 Testado de 320 a 1536 px sem rolagem horizontal em nenhuma rota.
 
@@ -241,7 +250,7 @@ Pré-requisito: **Node.js 20.19+** ou **22.12+**.
 
 ```bash
 # 1. Clone o repositório
-git link do repo alguem bota
+git clone https://github.com/cearaa/soul_hunter_sprint4.git
 cd soul_hunter_sprint4
 
 # 2. Instale as dependências
@@ -281,7 +290,7 @@ Sem `.env`, a aplicação já usa a URL da API publicada no Render.
 
 | Almas do jogo | Ícones |
 |---|---|
-| <img src="src/assets/img/almas/james-bones.jpeg" alt="James Bones" width="72" /> <img src="src/assets/img/almas/lord-voldemetro.jpg" alt="Lord Voldemetro" width="72" /> <img src="src/assets/img/almas/passe-man.jpeg" alt="Passe-Man" width="72" /> | <img src="src/assets/img/icones/github.png" alt="GitHub" width="40" /> <img src="src/assets/img/icones/linkedin.png" alt="LinkedIn" width="40" /> |
+| <img src="src/assets/img/almas/james-bones.jpeg" alt="James Bones" width="72" /> <img src="src/assets/img/almas/lord-voldemetro.jpg" alt="Lord Voldemetro" width="72" /> <img src="src/assets/img/almas/passe-man.jpeg" alt="Passe-Man" width="72" /> <img src="src/assets/img/almas/pura-alma.jpg" alt="Pura Alma" width="72" /> | <img src="src/assets/img/icones/github.png" alt="GitHub" width="40" /> <img src="src/assets/img/icones/linkedin.png" alt="LinkedIn" width="40" /> |
 
 Tema noturno com ciano, violeta e magenta (paleta `soul-*` do Tailwind) e fantasmas animados como elemento visual.
 
@@ -296,7 +305,7 @@ Projeto desenvolvido em grupo na **FIAP**, turma **1TDSPH**.
 | <img src="src/assets/img/tarik.jpeg" alt="Tárik" width="72" /> | **Tárik Moussa Alma** | 571411 | 1TDSPH | [GitHub](https://github.com/cearaa) · [LinkedIn](https://www.linkedin.com/in/rikk-alma) |
 | <img src="src/assets/img/giovanni.jpeg" alt="Giovanni" width="72" /> | **Giovanni Azevedo** | 572894 | 1TDSPH | [GitHub](https://github.com/GiovanniDEVazevedo) · [LinkedIn](https://www.linkedin.com/in/giovanni-azevedo-760753353/) |
 | <img src="src/assets/img/italo.jpeg" alt="Italo" width="72" /> | **Italo Neto** | 572912 | 1TDSPH | [GitHub](https://github.com/I-neeto99) · [LinkedIn](https://www.linkedin.com/in/italo-neto-390579345/) |
-| <img src="src/assets/img/fabricio.png" alt="Fabrício" width="72" /> | **Fabrício Aquiles Sales da Silva** | 570985 | 1TDSPH | [GitHub](https://github.com/fabricioaquiles) · [LinkedIn](https://www.linkedin.com/in/fabricioaquiles/) |
+| <img src="src/assets/img/fabricio.jpeg" alt="Fabrício" width="72" /> | **Fabrício Aquiles Sales da Silva** | 570985 | 1TDSPH | [GitHub](https://github.com/fabricioaquiles) · [LinkedIn](https://www.linkedin.com/in/fabricioaquiles/) |
 | <img src="src/assets/img/carlos.jpeg" alt="Carlos" width="72" /> | **Carlos Eduardo Tsucamoto Chiarelli** | 569574 | 1TDSPH | [GitHub](https://github.com/carlostsucamoto) · [LinkedIn](https://www.linkedin.com/in/carlostsucamoto/) |
 
 **Créditos:** ícones por [Lucide](https://lucide.dev); imagens das almas e logotipo produzidos pela equipe.

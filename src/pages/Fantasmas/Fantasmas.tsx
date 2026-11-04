@@ -173,7 +173,7 @@ export default function Fantasmas() {
                     </p>
                   </div>
                 ) : (
-                  <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                  <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {fantasmas.map((fantasma) => (
                       <li key={fantasma.codigo} className="glass-card flex flex-col gap-4 p-5">
                         <div className="flex items-start justify-between gap-3">

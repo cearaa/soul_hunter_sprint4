@@ -1,6 +1,6 @@
 import { Ghost as GhostIcon } from "lucide-react";
 import { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import githubIcon from "../../assets/img/icones/github.png";
 import linkedinIcon from "../../assets/img/icones/linkedin.png";
 import Button from "../../components/Button/Button";
@@ -13,6 +13,7 @@ import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 export default function IntegranteDetalhe() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const integrante = integrantes.find((item) => item.id === id);
 
@@ -47,7 +48,7 @@ export default function IntegranteDetalhe() {
   }
 
   return (
-    <section className="relative overflow-hidden py-12">
+    <section className="relative overflow-hidden py-10 md:py-12">
       <GhostField
         ghosts={[
           { top: "8%", left: "8%", size: 55, color: "#8b5cf6", opacity: 0.3, variant: 1 },
@@ -59,9 +60,9 @@ export default function IntegranteDetalhe() {
           src={integrante.foto}
           alt={integrante.nome}
           style={{ objectPosition: integrante.fotoPosition ?? "center" }}
-          className="mx-auto mb-6 h-64 w-64 rounded-2xl border border-white/10 object-cover shadow-[0_0_30px_rgba(139,92,246,0.35)]"
+          className="mx-auto mb-6 h-48 w-48 rounded-2xl sm:h-56 sm:w-56 lg:h-64 lg:w-64 border border-white/10 object-cover shadow-[0_0_30px_rgba(139,92,246,0.35)]"
         />
-        <h2 className="mb-1 text-3xl font-bold text-white neon-text">{integrante.nome}</h2>
+        <h2 className="mb-1 text-2xl font-bold sm:text-3xl text-white neon-text">{integrante.nome}</h2>
         <p className="mb-1 text-white/70">RM: {integrante.rm}</p>
         <p className="mb-4 text-white/70">Turma: {integrante.turma}</p>
         <p className="mx-auto mb-2 max-w-xl text-white/80">{integrante.bio}</p>
@@ -90,9 +91,14 @@ export default function IntegranteDetalhe() {
         </div>
 
         <div className="flex items-center justify-center gap-4">
-          <Button onClick={() => navigate(-1)}>Voltar</Button>
+          <Button
+            // Aberto direto pelo link (sem histórico no app): volta para a lista em vez de sair do site.
+            onClick={() => (location.key === "default" ? navigate(ROTAS.integrantes) : navigate(-1))}
+          >
+            Voltar
+          </Button>
           <Link
-            to="/integrantes"
+            to={ROTAS.integrantes}
             className="font-semibold text-soul-cyan hover:underline"
           >
             Ver todos os integrantes

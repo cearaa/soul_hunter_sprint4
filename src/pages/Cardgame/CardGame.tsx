@@ -1,15 +1,16 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { Espectro, FaceCarta } from "../../components/Cartas/Cartas";
-import { temaCarta } from "../../hooks/cartaUtils";
+import { temaCarta } from "../../utils/cartas";
 import {
   acessarPartida,
   listarCartas,
   type Carta,
   type Partida,
   type Sessao,
-} from "../../hooks/apiCardGame";
+} from "../../services/cardGameService";
 import Arena from "../../components/Arena/Arena";
+import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 import "./estilos.css";
 
 const chaveSessao = "soul-hunter-cardgame:sessao:v1";
@@ -344,6 +345,7 @@ function Catalogo({ cartas, erro, carregar }: {
 }
 
 export default function Cardgame() {
+  useDocumentTitle("Card Game");
   const navigate = useNavigate();
   const [sessao, setSessao] = useState(lerSessao);
   const [partida, setPartida] = useState<Partida | null>(null);

@@ -1,6 +1,6 @@
 import { useId } from "react";
-import type { Carta } from "../../hooks/apiCardGame";
-import { raridades } from "../../hooks/cartaUtils";
+import type { Carta } from "../../services/cardGameService";
+import { raridades } from "../../utils/cartas";
 
 export function Espectro({ variante = 0 }: { variante?: number }) {
   const id = useId();

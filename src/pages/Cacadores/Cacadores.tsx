@@ -187,7 +187,7 @@ export default function Cacadores() {
                     Nenhum caçador encontrado para &ldquo;{busca}&rdquo;.
                   </p>
                 ) : (
-                  <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                  <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {visiveis.map((usuario) => {
                       const souEu = usuario.codigo === codigoUsuario;
                       return (
