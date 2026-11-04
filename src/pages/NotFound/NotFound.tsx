@@ -1,6 +1,7 @@
 import ButtonLink from "../../components/Button/ButtonLink";
 import GhostField from "../../components/Ghost/GhostField";
 import { useDocumentTitle } from "../../hooks/useDocumentTitle";
+import { ROTAS } from "../../routes/paths";
 
 export default function NotFound() {
   useDocumentTitle("Página não encontrada");
@@ -18,7 +19,7 @@ export default function NotFound() {
         <p className="mx-auto mb-8 max-w-md px-4 text-base text-white/80 sm:text-lg">
           Ops! Esse fantasma fugiu — essa página não existe no SoulHunter.
         </p>
-        <ButtonLink to="/">Voltar para a Home</ButtonLink>
+        <ButtonLink to={ROTAS.home}>Voltar para a Home</ButtonLink>
       </div>
     </section>
   );

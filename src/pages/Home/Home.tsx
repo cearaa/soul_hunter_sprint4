@@ -117,11 +117,11 @@ export default function Home() {
             atitudes sustentáveis em pontos reais — trocáveis por passagens de transporte público.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <ButtonLink to="/dashboard" ariaLabel="Acessar Dashboard da plataforma">
+            <ButtonLink to={ROTAS.dashboard} ariaLabel="Acessar Dashboard da plataforma">
               <Target className="h-5 w-5" aria-hidden="true" />
               Acessar Dashboard
             </ButtonLink>
-            <ButtonLink to="/ranking" variant="outline" ariaLabel="Ver ranking de caçadores">
+            <ButtonLink to={ROTAS.ranking} variant="outline" ariaLabel="Ver ranking de caçadores">
               <Trophy className="h-5 w-5" aria-hidden="true" />
               Ver Ranking
             </ButtonLink>
@@ -180,7 +180,7 @@ export default function Home() {
           <h2 className="mb-3 text-3xl font-bold text-white sm:text-4xl">Almas à espreita</h2>
           <p className="mx-auto mb-10 max-w-xl text-white/70">
             Uma prévia das almas que você pode encontrar pela cidade. Quer saber mais sobre cada
-            uma? Visite a página <Link to="/sobre" className="text-soul-teal underline">Sobre</Link>.
+            uma? Visite a página <Link to={ROTAS.sobre} className="text-soul-teal underline">Sobre</Link>.
           </p>
           <div className="flex flex-wrap justify-center gap-8">
             {almas.map((alma) => (

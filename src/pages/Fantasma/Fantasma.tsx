@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import GhostField, { type GhostSpec } from "../../components/Ghost/GhostField";
 import { useDocumentTitle } from "../../hooks/useDocumentTitle";
+import { ROTAS } from "../../routes/paths";
 
 const ghostRain: GhostSpec[] = [
   { top: "5%", left: "5%", size: 60, color: "#d946ef", variant: 1, delay: 0 },
@@ -38,7 +39,7 @@ export default function Fantasma() {
             Essa aba não é como as outras... uma vez dentro, não tem mais volta.
           </p>
           <div className="flex justify-center gap-4">
-            <Button variant="outline" onClick={() => navigate("/")}>
+            <Button variant="outline" onClick={() => navigate(ROTAS.home)}>
               Não, tô com medo
             </Button>
             <Button onClick={() => setStep("ragebait")}>Sim, eu aguento</Button>
@@ -62,7 +63,7 @@ export default function Fantasma() {
           RAGEBAITADO FESSOR. O SoulHunter agradece a paciência (e a nota boa, se possível{" "}
           <Eye className="inline h-4 w-4 align-[-2px]" aria-hidden="true" />).
         </p>
-        <Button onClick={() => navigate("/")}>
+        <Button onClick={() => navigate(ROTAS.home)}>
           <House className="h-5 w-5" aria-hidden="true" />
           Voltar para a Home
         </Button>

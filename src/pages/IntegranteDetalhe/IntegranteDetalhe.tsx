@@ -1,6 +1,6 @@
 import { Ghost as GhostIcon } from "lucide-react";
 import { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import githubIcon from "../../assets/img/icones/github.png";
 import linkedinIcon from "../../assets/img/icones/linkedin.png";
 import Button from "../../components/Button/Button";
@@ -13,6 +13,7 @@ import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 export default function IntegranteDetalhe() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const integrante = integrantes.find((item) => item.id === id);
 
@@ -90,9 +91,14 @@ export default function IntegranteDetalhe() {
         </div>
 
         <div className="flex items-center justify-center gap-4">
-          <Button onClick={() => navigate(-1)}>Voltar</Button>
+          <Button
+            // Aberto direto pelo link (sem histórico no app): volta para a lista em vez de sair do site.
+            onClick={() => (location.key === "default" ? navigate(ROTAS.integrantes) : navigate(-1))}
+          >
+            Voltar
+          </Button>
           <Link
-            to="/integrantes"
+            to={ROTAS.integrantes}
             className="font-semibold text-soul-cyan hover:underline"
           >
             Ver todos os integrantes
