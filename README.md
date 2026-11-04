@@ -37,9 +37,9 @@ Esta é a **Sprint 4** do projeto: o front-end em **React + Vite + TypeScript** 
 
 | Recurso | Link |
 |---|---|
-| 💻 **Repositório no GitHub** | `url do github ai cambadinha fazendo favor` |
-| 🌐 **Aplicação publicada na Vercel** | `alguem bota a url da vercel` |
-| 🎥 **Vídeo de apresentação (YouTube, até 3 min)** | `nosso giovanni devAzevedo deveria fazer heim heim` |
+| 💻 **Repositório no GitHub** | <https://github.com/cearaa/soul_hunter_sprint4> |
+| 🌐 **Aplicação publicada na Vercel** | ⚠️ _adicionar a URL do deploy (ex.: `https://soul-hunter.vercel.app`)_ |
+| 🎥 **Vídeo de apresentação (YouTube, até 3 min)** | ⚠️ _adicionar o link do vídeo no YouTube_ |
 | 🔌 **API Java publicada (Render)** | <https://soulhunter-rm571411.onrender.com/soulhunter> |
 
 > ⏳ **Atenção:** a API roda no plano gratuito do Render e hiberna quando fica parada. A **primeira** requisição pode levar até **1 minuto**. A tela mostra um aviso de carregamento e um botão "Tentar de novo" caso falhe.
@@ -229,7 +229,7 @@ Toda a interface usa apenas utilitários responsivos do Tailwind (`sm:`, `md:`, 
 
 - **Mobile (até 480 px):** uma coluna, menu hambúrguer, tabelas com rolagem interna.
 - **Tablet (768 px):** grades de 2 colunas e formulários lado a lado.
-- **Desktop (992 px ou mais):** grades de 3 colunas, painéis em duas colunas e menu completo a partir de `xl` (1280 px).
+- **Desktop (992 px ou mais):** o breakpoint `lg` foi ajustado para 992 px (`--breakpoint-lg` em `src/index.css`); grades de 3 colunas, painéis em duas colunas e menu completo a partir de `xl` (1280 px).
 
 Testado de 320 a 1536 px sem rolagem horizontal em nenhuma rota.
 
@@ -241,7 +241,7 @@ Pré-requisito: **Node.js 20.19+** ou **22.12+**.
 
 ```bash
 # 1. Clone o repositório
-git link do repo alguem bota
+git clone https://github.com/cearaa/soul_hunter_sprint4.git
 cd soul_hunter_sprint4
 
 # 2. Instale as dependências
